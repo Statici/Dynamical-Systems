@@ -8,27 +8,22 @@
 
 %% Usage
 % Define the function you're interested in:
-g = @(x) 2.*x.*(1-x);
-% Define its phase space X. Note that the bigger it gets, the higher
-% reolution you get (more accuracy in case of functions that are more wild)
-% but simultaneously, the longer it takes to run and the more memory it
-% consumes while running. If you set this "1000" to "10000" you're in for a
-% bad time.
+
+g = @(x) 3.5.*x.*(1-x);
 X = linspace(0,1,1000);
-% Set an initial condition:
-x0 = .99;
-% Set how many iteratives you want to explore.
+x0 = .1;
 steps = 10;
-% Call the function and get your web
-web = webDiagram(g,X,x0,steps);
+web1 = webDiagram(g,X,x0,steps);
 
 %% Plotting the results
+
 hold on
-quiver(X,X,web(:,:,2),web(:,:,1),0,'MaxHeadSize',.025)
+quiver(X,X,web1(:,:,2),web1(:,:,1),0,'MaxHeadSize',.025)
 plot(X,g(X))
 plot(X,X)
 ylim([min(X) max(X)])
 xlim([min(X) max(X)])
+title(['Web diagram for g(x) with ' num2str(steps) ' iterativess'])
 xlabel('x')
 ylabel('g(x)')
 hold off
